@@ -1,3 +1,15 @@
+// Check if user is already logged in
+function checkAuth() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        window.location.href = '/';
+        return;
+    }
+}
+
+// Run auth check when page loads
+document.addEventListener('DOMContentLoaded', checkAuth);
+
 document.getElementById('signupForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 

@@ -22,7 +22,7 @@ const verifyToken = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1] || req.cookies?.token;
 
   if (!token) {
-    return res.redirect("/sign-in");
+    return res.status(401).json({ error: "No token provided" });
   }
 
   try {
@@ -30,7 +30,25 @@ const verifyToken = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (err) {
-    return res.redirect("/sign-in");
+    return res.status(401).json({ error: "Invalid token" });
+  }
+};
+
+// Middleware to check if user is NOT authenticated
+const checkNotAuthenticated = (req, res, next) => {
+  const token = req.headers.authorization?.split(" ")[1] || req.cookies?.token;
+
+  if (!token) {
+    return next();
+  }
+
+  try {
+    jwt.verify(token, JWT_SECRET);
+    // If token is valid, redirect to home page
+    return res.redirect('/');
+  } catch (err) {
+    // If token is invalid, proceed to login/signup
+    return next();
   }
 };
 
@@ -39,11 +57,11 @@ app.get("/", verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
-app.get("/sign-in", (req, res) => {
+app.get("/sign-in", checkNotAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/sign-in/sign-in.html"));
 });
 
-app.get("/sign-up", (req, res) => {
+app.get("/sign-up", checkNotAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/sign-up/sign-up.html"));
 });
 
