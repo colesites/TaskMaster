@@ -32,6 +32,14 @@
       "dest": "/frontend/sign-up/sign-up.css"
     },
     {
+      "src": "/sign-in/main.js",
+      "dest": "/frontend/sign-in/main.js"
+    },
+    {
+      "src": "/sign-up/main.js",
+      "dest": "/frontend/sign-up/main.js"
+    },
+    {
       "src": "/favicon.svg",
       "dest": "/frontend/favicon.svg"
     },
