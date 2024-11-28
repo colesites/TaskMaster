@@ -4,11 +4,18 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const collection = require("./config");
 const Task = require("./models/task");
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET;
+
+app.use(cors({
+    origin: process.env.NODE_ENV === 'production' 
+        ? 'https://task-master-c-tech.vercel.app' 
+        : 'http://localhost:3000'
+}));
 
 // Convert data into JSON format
 app.use(express.json());
