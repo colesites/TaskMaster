@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskMaster</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo">
+          <i class="fas fa-check-circle"></i>
+          <h1>TaskMaster</h1>
+        </div>
+        <div class="search-container">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="Search tasks..."
+              id="search-input"
+            />
+          </div>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li class="active"><i class="fas fa-inbox"></i> Inbox</li>
+            <li><i class="fas fa-calendar-day"></i> Today</li>
+            <li><i class="fas fa-calendar-week"></i> Upcoming</li>
+            <li><i class="fas fa-filter"></i> Filters & Labels</li>
+            <li class="logout-nav"><i class="fas fa-sign-out-alt"></i> Logout</li>
+          </ul>
+        </nav>
+        <div class="projects">
+          <div class="projects-header">
+            <h2>Projects</h2>
+            <button class="add-project"><i class="fas fa-plus"></i></button>
+          </div>
+          <ul class="project-list">
+            <!-- Projects will be added dynamically via JavaScript -->
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="content-header">
+          <div class="header-left">
+            <h1>Inbox</h1>
+            <button class="view-options"><i class="fas fa-list"></i></button>
+          </div>
+          <div class="header-right">
+            <button class="sort-button">
+              <i class="fas fa-sort"></i> Sort
+            </button>
+            <button class="more-actions">
+              <i class="fas fa-ellipsis-h"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Add Task Button -->
+        <div class="add-task">
+          <button class="add-task-button">
+            <i class="fas fa-plus"></i>
+            <span>Add task</span>
+          </button>
+        </div>
+
+        <!-- Task List -->
+        <div class="task-list">
+          <!-- Tasks will be added dynamically via JavaScript -->
+        </div>
+      </main>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>

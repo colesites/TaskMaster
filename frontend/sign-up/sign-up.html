@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Master - Sign Up</title>
+    <link rel="stylesheet" href="sign-up.css">
+</head>
+<body>
+    <div class="signup-container">
+        <h1 class="task-master">Task Master</h1>
+        <h2 class="signup-title">Create Account</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit">Sign Up</button>
+            <p class="login-link">Already have an account? <a href="/sign-in">Sign In</a></p>
+        </form>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

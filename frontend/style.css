@@ -1,0 +1,522 @@
+:root {
+    --primary-color: #db4c3f;
+    --bg-color: #fff;
+    --sidebar-bg: #fafafa;
+    --text-color: #202020;
+    --text-secondary: #808080;
+    --border-color: #f0f0f0;
+    --hover-bg: #f3f3f3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 305px;
+    background-color: var(--sidebar-bg);
+    padding: 30px 0;
+    border-right: 1px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 30px;
+}
+
+.logo i {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.main-nav ul {
+    list-style: none;
+}
+
+.main-nav li, .project-list li {
+    padding: 8px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.main-nav li:hover, .project-list li:hover {
+    background-color: var(--hover-bg);
+}
+
+.main-nav li.active {
+    background-color: #eeeeee;
+}
+
+.main-nav li i, .project-list li i {
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+}
+
+.projects {
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.projects-header h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.add-project {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.project-list {
+    list-style: none;
+}
+
+.project-list i {
+    font-size: 10px;
+}
+
+/* Project Styles */
+.project-list li {
+    position: relative;
+    padding-right: 35px;
+}
+
+.project-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.project-item i.fa-circle {
+    font-size: 10px;
+}
+
+.project-item span {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.delete-project {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    padding: 5px;
+    color: var(--text-secondary);
+}
+
+.project-list li:hover .delete-project {
+    opacity: 1;
+}
+
+.delete-project:hover {
+    color: var(--primary-color);
+}
+
+/* Project Form Styles */
+.project-form-container {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.project-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.project-input {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.project-color-input {
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Active Project Styles */
+.project-list li.active {
+    background-color: var(--hover-bg);
+}
+
+.project-list li.active .project-item span {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    background-color: var(--bg-color);
+    padding: 40px 50px;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-left h1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.header-right {
+    position: relative;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+button:hover {
+    background-color: var(--hover-bg);
+}
+
+.add-task {
+    margin-bottom: 30px;
+}
+
+.add-task-button {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.add-task-button i {
+    font-size: 12px;
+}
+
+/* Sort Menu Styles */
+.sort-menu-container {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 5px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.sort-menu {
+    min-width: 200px;
+    padding: 8px 0;
+}
+
+.sort-option {
+    padding: 8px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.2s;
+}
+
+.sort-option:hover {
+    background-color: var(--hover-bg);
+}
+
+.sort-option i {
+    width: 16px;
+    color: var(--text-secondary);
+}
+
+/* Active sort indication */
+.sort-button.active {
+    color: var(--primary-color);
+}
+
+/* Task List Styles */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.task-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.task-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #808080;
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-top: 3px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.task-checkbox:hover {
+    border-color: var(--primary-color);
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-text {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.task-details {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.task-project, .task-date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Task Form Styles */
+.task-form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.task-input {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.task-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+textarea.task-input {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.save-btn, .cancel-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.save-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    opacity: 0.95;
+}
+
+.save-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    opacity: 1;
+}
+
+.cancel-btn {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+}
+
+/* Priority Styles */
+.priority-high {
+    border-left: 3px solid #ff4d4d;
+    padding-left: 5px;
+}
+
+.priority-medium {
+    border-left: 3px solid #ffd700;
+    padding-left: 5px;
+}
+
+.priority-low {
+    border-left: 3px solid #4caf50;
+    padding-left: 5px;
+}
+
+/* Task Actions */
+.task-actions {
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.task-item:hover .task-actions {
+    opacity: 1;
+}
+
+.task-description {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+.task-checkbox.checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.task-checkbox.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Search Box Styles */
+.search-container {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+}
+
+.search-box i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 8px 12px 8px 35px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    transition: all 0.2s ease;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(219, 76, 63, 0.1);
+}
+
+#search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Search Results Highlight */
+.task-text.highlight {
+    background-color: rgba(255, 247, 0, 0.3);
+    border-radius: 2px;
+}
+
+/* No Results Message */
+.no-results {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.main-nav .logout-nav {
+    margin-top: 20px;
+    color: #dc3545;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.main-nav .logout-nav:hover {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #c82333;
+}
