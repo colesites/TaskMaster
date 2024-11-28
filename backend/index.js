@@ -13,7 +13,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? 'https://task-master-c-tech.vercel.app' 
+        ? 'https://task-master-rose-three.vercel.app' 
         : 'http://localhost:3000'
 }));
 
