@@ -12,10 +12,15 @@ const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET;
 
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production' 
-        ? 'https://task-master-rose-three.vercel.app' 
-        : 'http://localhost:3000'
+    origin: ['https://task-master-rose-three.vercel.app', 'http://localhost:3000'],
+    credentials: true
 }));
+
+// API routes prefix
+app.use('/api', (req, res, next) => {
+    // Add API route handling
+    next();
+});
 
 // Convert data into JSON format
 app.use(express.json());

@@ -1,23 +1,47 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "backend/index.js",
-            "use": "@vercel/node"
-        },
-        {
-            "src": "frontend/**/*",
-            "use": "@vercel/static"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/api/(.*)",
-            "dest": "backend/index.js"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "frontend/$1"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontend/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/index.js"
+    },
+    {
+      "src": "/sign-in",
+      "dest": "/frontend/sign-in/sign-in.html"
+    },
+    {
+      "src": "/sign-up",
+      "dest": "/frontend/sign-up/sign-up.html"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/frontend/assets/$1"
+    },
+    {
+      "src": "/style.css",
+      "dest": "/frontend/style.css"
+    },
+    {
+      "src": "/(.*)\\.js",
+      "dest": "/frontend/$1.js"
+    },
+    {
+      "src": "/(.*)\\.css",
+      "dest": "/frontend/$1.css"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/index.html"
+    }
+  ]
 }
