@@ -24,6 +24,14 @@
       "dest": "/frontend/sign-up/sign-up.html"
     },
     {
+      "src": "/sign-in.css",
+      "dest": "/frontend/sign-in/sign-in.css"
+    },
+    {
+      "src": "/sign-up.css",
+      "dest": "/frontend/sign-up/sign-up.css"
+    },
+    {
       "src": "/assets/(.*)",
       "dest": "/frontend/assets/$1"
     },
