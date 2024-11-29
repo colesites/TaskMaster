@@ -17,6 +17,16 @@
     },
     {
       "src": "/sign-in",
+      "methods": ["POST"],
+      "dest": "backend/index.js"
+    },
+    {
+      "src": "/sign-up",
+      "methods": ["POST"],
+      "dest": "backend/index.js"
+    },
+    {
+      "src": "/sign-in",
       "dest": "/frontend/sign-in/sign-in.html"
     },
     {
