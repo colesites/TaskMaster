@@ -26,7 +26,11 @@ document
     }
 
     try {
-      const response = await fetch("/sign-up", {
+      const API_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:3000' 
+        : 'https://task-master-rose-three.vercel.app/sign-up'; // Replace with your actual Vercel backend URL
+
+      const response = await fetch(`${API_URL}/sign-up`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

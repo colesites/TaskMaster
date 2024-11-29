@@ -19,7 +19,11 @@ document
     const password = document.getElementById("password").value;
 
     try {
-      const response = await fetch("/sign-in", {
+      const API_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:3000' 
+        : 'https://task-master-rose-three.vercel.app/sign-in'; // Replace with your actual Vercel backend URL
+
+      const response = await fetch(`${API_URL}/sign-in`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
