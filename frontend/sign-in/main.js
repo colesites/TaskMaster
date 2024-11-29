@@ -38,22 +38,23 @@ document
         throw new Error("Server error: Invalid response format");
       }
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.error || "Sign in failed");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Sign in failed");
       }
+
+      const data = await response.json();
 
       // Store the token in localStorage
       localStorage.setItem("token", data.token);
 
       // Redirect to home page
       window.location.href = "/";
-    } catch (error) {
-      if (error.name === "SyntaxError") {
+    } catch (err) {
+      if (err.name === "SyntaxError") {
         alert("Server error: Invalid response format");
       } else {
-        alert(error.message);
+        alert(err.message || "An error occurred during sign in");
       }
     }
   });
