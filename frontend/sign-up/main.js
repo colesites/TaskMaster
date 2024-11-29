@@ -27,10 +27,10 @@ document
 
     try {
       const API_URL = window.location.hostname === 'localhost' 
-        ? 'http://localhost:3000' 
-        : 'https://task-master-rose-three.vercel.app'; // Replace with your actual Vercel backend URL
+        ? 'http://localhost:3000/sign-up' 
+        : 'https://task-master-rose-three.vercel.app/sign-up'; // Replace with your actual Vercel backend URL
 
-      const response = await fetch(`${API_URL}/sign-up`, {
+      const response = await fetch(`${API_URL}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
