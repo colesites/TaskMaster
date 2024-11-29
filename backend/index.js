@@ -11,6 +11,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET;
 
+// Convert data into JSON format
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.use(cors({
     origin: ['https://task-master-rose-three.vercel.app', 'http://localhost:3000'],
     credentials: true
@@ -21,10 +25,6 @@ app.use('/api', (req, res, next) => {
     // Add API route handling
     next();
 });
-
-// Convert data into JSON format
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 // Serve static files from the frontend directory
 app.use(express.static(path.join(__dirname, "../frontend")));
