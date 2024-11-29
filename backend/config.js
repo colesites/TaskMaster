@@ -7,9 +7,16 @@ connect
   .then(() => {
     console.log("Connected correctly to server");
   })
-  .catch((err) => console.log(err.errmsg));
+  .catch((err) => {
+    console.error("MongoDB connection error:", err);
+    process.exit(1); // Exit if cannot connect to database
+  });
 
 const loginSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
