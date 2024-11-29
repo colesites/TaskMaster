@@ -1,42 +1,55 @@
 // Check if user is already logged in
 function checkAuth() {
-    const token = localStorage.getItem('token');
-    if (token) {
-        window.location.href = '/';
-        return;
-    }
+  const token = localStorage.getItem("token");
+  if (token) {
+    window.location.href = "/";
+    return;
+  }
 }
 
 // Run auth check when page loads
-document.addEventListener('DOMContentLoaded', checkAuth);
+document.addEventListener("DOMContentLoaded", checkAuth);
 
-document.getElementById('signinForm').addEventListener('submit', async function(e) {
+document
+  .getElementById("signinForm")
+  .addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     try {
-        const response = await fetch('/sign-in', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password })
-        });
+      const response = await fetch("/sign-in", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-        const data = await response.json();
+      // Check if the response has the correct content type
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Server error: Invalid response format");
+      }
 
-        if (!response.ok) {
-            throw new Error(data.error || 'Sign in failed');
-        }
+      const data = await response.json();
 
-        // Store the token in localStorage
-        localStorage.setItem('token', data.token);
+      if (!response.ok) {
+        throw new Error(data.error || "Sign in failed");
+      }
 
-        // Redirect to home page
-        window.location.href = '/';
+      // Store the token in localStorage
+      localStorage.setItem("token", data.token);
+
+      // Redirect to home page
+      window.location.href = "/";
     } catch (error) {
+      if (error.name === "SyntaxError") {
+        alert("Server error: Invalid response format");
+      } else {
         alert(error.message);
+      }
     }
-});
+  });

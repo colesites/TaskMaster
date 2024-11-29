@@ -1,49 +1,61 @@
 // Check if user is already logged in
 function checkAuth() {
-    const token = localStorage.getItem('token');
-    if (token) {
-        window.location.href = '/';
-        return;
-    }
+  const token = localStorage.getItem("token");
+  if (token) {
+    window.location.href = "/";
+    return;
+  }
 }
 
 // Run auth check when page loads
-document.addEventListener('DOMContentLoaded', checkAuth);
+document.addEventListener("DOMContentLoaded", checkAuth);
 
-document.getElementById('signupForm').addEventListener('submit', async function(e) {
+document
+  .getElementById("signupForm")
+  .addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const username = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
+    const username = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
     if (password !== confirmPassword) {
-        alert('Passwords do not match');
-        return;
+      alert("Passwords do not match");
+      return;
     }
 
     try {
-        const response = await fetch('/sign-up', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, email, password, confirmPassword })
-        });
+      const response = await fetch("/sign-up", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ username, email, password, confirmPassword }),
+      });
 
-        const data = await response.json();
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Server error: Invalid response format");
+      }
 
-        if (!response.ok) {
-            throw new Error(data.error || 'Sign up failed');
-        }
+      const data = await response.json();
 
-        // Store the token in localStorage
-        localStorage.setItem('token', data.token);
+      if (!response.ok) {
+        throw new Error(data.error || "Sign up failed");
+      }
 
-        // Redirect to home page
-        window.location.href = '/';
+      // Store the token in localStorage
+      localStorage.setItem("token", data.token);
+
+      // Redirect to home page
+      window.location.href = "/";
     } catch (error) {
+      if (error.name === "SyntaxError") {
+        alert("Server error: Invalid response format");
+      } else {
         alert(error.message);
+      }
     }
-});
+  });
