@@ -19,9 +19,10 @@ document
     const password = document.getElementById("password").value;
 
     try {
-      const API_URL = window.location.hostname === 'task-master-c-tech.vercel.app/sign-in' 
-        ? 'https://task-master-c-tech.vercel.app/sign-in' 
-        : 'https://task-master-c-tech.vercel.app/sign-in'; // Replace with your actual Vercel backend URL
+      const API_URL =
+        window.location.hostname === "localhost"
+          ? "http://localhost:3000/sign-in"
+          : "https://task-master-c-tech.vercel.app/sign-in"; // Replace with your actual Vercel backend URL
 
       const response = await fetch(`${API_URL}`, {
         method: "POST",
@@ -46,10 +47,15 @@ document
       const data = await response.json();
 
       // Store the token in localStorage
-      localStorage.setItem("token", data.token);
+      if (data.token) {
+        // Store the token in localStorage
+        localStorage.setItem("token", data.token);
 
-      // Redirect to home page
-      window.location.href = "/";
+        // Redirect to home page using the provided redirect URL
+        window.location.href = data.redirect || "/";
+      } else {
+        throw new Error("No token received from server");
+      }
     } catch (err) {
       if (err.name === "SyntaxError") {
         alert("Server error: Invalid response format");

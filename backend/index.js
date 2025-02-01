@@ -121,7 +121,11 @@ app.post("/sign-up", async (req, res) => {
       { expiresIn: "24h" }
     );
 
-    res.status(201).json({ token });
+    res.status(201).json({
+      token,
+      redirect: "/",
+      message: "Registration successful",
+    });
   } catch (err) {
     console.error("Signup error:", err);
     res.status(500).json({ error: "Server error during signup" });
@@ -157,7 +161,11 @@ app.post("/sign-in", async (req, res) => {
       { expiresIn: "24h" }
     );
 
-    res.json({ token });
+    res.json({
+      token,
+      redirect: "/",
+      message: "Login successful",
+    });
   } catch (err) {
     console.error("Signin error:", err);
     res.status(500).json({ error: "Server error during signin" });

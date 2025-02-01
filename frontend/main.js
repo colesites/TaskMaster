@@ -39,7 +39,7 @@ function logout() {
     localStorage.removeItem('tasks');
     
     // Redirect to sign-in page
-    window.location.href = '/sign-in';
+    window.location.href = '../frontend/sign-in/sign-in.html';
 }
 
 class TaskManager {
